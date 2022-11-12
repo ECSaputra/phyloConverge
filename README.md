@@ -7,17 +7,17 @@
 
 <!-- badges: end -->
 
-*phyloConverge* is a comparative genomics software for identifying
+phyloConverge is a comparative genomics software for identifying
 phenotypic associations of genetic elements.
 
-*phyloConverge* combines maximum likelihood estimation and
-phylogeny-aware permutation tests to detect significant convergent
-evolutionary rate shifts underlying phenotypic convergence, while
-calibrating for biases from phylogenetic dependence, sequence genomes,
-and correlations between genetic elements. *phyloConverge* is able to
-analyze segments of nucleotides at a wide range of sizes, from scoring
-genes or conserved elements, to scanning entire multiple sequence
-alignments at nucleotide resolution with computational tractability.
+phyloConverge combines maximum likelihood estimation and phylogeny-aware
+permutation tests to detect significant convergent evolutionary rate
+shifts underlying phenotypic convergence, while calibrating for biases
+from phylogenetic dependence, sequence genomes, and correlations between
+genetic elements. phyloConverge is able to analyze segments of
+nucleotides at a wide range of sizes, from scoring genes or conserved
+elements, to scanning entire multiple sequence alignments at nucleotide
+resolution with computational tractability.
 
 ## Dependencies
 
@@ -31,7 +31,8 @@ phyloConverge requires the following to be installed:
   - RPHAST
     
       - Follow installation here:
-        [RPHAST](https://github.com/CshlSiepelLab/RPHAST)
+        [RPHAST](https://github.com/CshlSiepelLab/RPHAST) or
+        [here](https://confluence.cc.lehigh.edu/display/LKB/Install+RPHAST+on+Windows)
 
 ## Installation
 
