@@ -1,0 +1,53 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# phyloConverge
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+_phyloConverge_ is a comparative genomics software for identifying phenotypic associations of genetic elements.
+
+_phyloConverge_ combines maximum likelihood estimation and phylogeny-aware permutation tests to detect significant convergent evolutionary rate shifts underlying phenotypic convergence, while calibrating for biases from phylogenetic dependence, sequence genomes, and correlations between genetic elements. _phyloConverge_ is able to analyze segments of nucleotides at a wide range of sizes, from scoring genes or conserved elements, to scanning entire multiple sequence alignments at nucleotide resolution with computational tractability.
+
+## Dependencies
+phyloConverge requires the following to be installed:
+
+* _RERconverge_
+
+  + Follow installation here: [RERconverge](https://github.com/nclark-lab/RERconverge)
+  
+* RPHAST
+
+  + Follow installation here: [RPHAST](https://github.com/CshlSiepelLab/RPHAST)
+
+## Installation
+
+phyloConverge can be installed using the devtools package, using the following command:
+
+``` r
+library(devtools)
+install_github("ECSaputra/phyloConverge")
+```
+
+## Example
+
+This is a basic example which shows you how to solve a common problem:
+
+```{r example}
+library(phyloConverge)
+## basic example code
+```
+
