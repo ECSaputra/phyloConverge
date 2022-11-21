@@ -13,3 +13,6 @@ Suggests:
     knitr,
     rmarkdown
 VignetteBuilder: knitr
+Imports: 
+    rphast,
+    RERconverge
