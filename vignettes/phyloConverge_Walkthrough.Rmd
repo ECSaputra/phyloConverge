@@ -37,7 +37,7 @@ _phyloConverge_ requires the following input data:
 
 ## Loading input data
 
-To start the analysis, we need to provide _phyloConverge_ with input data. The **neutral tree model** and the **alignment** can be loaded using the `read.tm` and `read.msa` functions in the _rphast_ package, respectively. The `read.msa` function also accepts alignments in the MAF format. Species names in the tree must match species names in the alignment. For the purposes of this vignette, we will use an alignment dataset previously published by [Roscito et al. (2018)](https://www.nature.com/articles/s41467-018-07122-z), with _mm10_ as the reference species. The conserved non-coding element (CNE) _CNE031689_ is used for illustration.
+To start the analysis, we need to provide _phyloConverge_ with input data. The **neutral tree model** and the **alignment** can be loaded using the `read.tm` and `read.msa` functions in the _rphast_ package, respectively. The `read.msa` function also accepts alignments in the MAF format. Species names in the tree must match species names in the alignment. For the purposes of this vignette, we will use an alignment dataset previously published by [Roscito et al. (Nature Communications 2018)](https://www.nature.com/articles/s41467-018-07122-z), with _mm10_ as the reference species. The conserved non-coding element (CNE) _CNE031689_ is used for illustration.
 
 ```{r, message=F, warning=F, error=F, results=F, fig.show="hide"}
 # Loading neutral tree model
@@ -108,7 +108,7 @@ The first function that can be used to compute convergence score with the _phylo
 
 * `foregrounds`: A character vector containing the tip (and ancestral) foreground species
 
-* `permulated_foregrounds': A list of character vectors containing the null foreground species (i.e., the output of `getPermulatedPhenotypes`)
+* `permulated_foregrounds`: A list of character vectors containing the null foreground species (i.e., the output of `getPermulatedPhenotypes`)
 
 * `neutralMod`: The neutral tree model
 
