@@ -9,8 +9,7 @@ getPermulatedPhenotypes(
   neutraltree,
   num_perms,
   root_species,
-  output_mod = "names",
-  sisters_list = NULL
+  output_mod = "names"
 )
 }
 \arguments{

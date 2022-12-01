@@ -4,12 +4,7 @@
 \alias{getPermulatedPhenotypeTree}
 \title{Produce a permulated phenotype tree from the observed phenotype and phylogeny}
 \usage{
-getPermulatedPhenotypeTree(
-  foregrounds,
-  neutraltree,
-  root_species,
-  sisters_list = NULL
-)
+getPermulatedPhenotypeTree(foregrounds, neutraltree, root_species)
 }
 \arguments{
 \item{foregrounds}{a vector of foreground species names}
@@ -17,8 +12,6 @@ getPermulatedPhenotypeTree(
 \item{neutraltree}{a phylo object representing neutral evolution}
 
 \item{root_species}{the species to root the tree on}
-
-\item{sisters_list}{a list object containing pair(s) of sister species whose common ancestor(s) should be included in the foreground set}
 }
 \value{
 permulated_tree a permulated phenotype tree with binary edge lengths (foreground edges = 1, background edges = 0)

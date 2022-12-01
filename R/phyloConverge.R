@@ -110,8 +110,8 @@ run_phyloConverge=function(foregrounds, permulated_foregrounds, neutralMod, maf,
 #' @param neutralMod neutral nucleutide substitution model
 #' @param refseq reference species
 #' @param offset offset for the coordinates in the alignment. If NULL, the offset specified in the alignment is used
-#' @param stride
-#' @param window
+#' @param stride interval (in bp) of positions of sliding windows to be scored (default 1, meaning scoring every nucleotide)
+#' @param window size (in bp) of the sliding windows to be scored (default 1)
 #' @param alpha target significance level to control for
 #' @param min.fg minimum number of foreground species required
 #' @param method scoring method for phyloP (default "LRT")
