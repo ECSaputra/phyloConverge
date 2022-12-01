@@ -1,7 +1,7 @@
 ---
 title: "phyloConverge Walkthrough"
 author: "Elysia Saputra"
-output: html_document
+output: github_document
 vignette: >
   %\VignetteIndexEntry{phyloConverge Walkthrough}
   %\VignetteEngine{knitr::rmarkdown}
@@ -97,24 +97,22 @@ permulated_foregrounds = getPermulatedPhenotypes(foregrounds, neutral_tree, num_
 						 root_species, output_mod="names")
 print(permulated_foregrounds)
 #> [[1]]
-#> [1] "mm10"            "micOch1"         "nanGal1"         "speTri2"        
-#> [5] "hetGla2"         "cavPor3"         "hetGla2-cavPor3"
+#> [1] "mm10"     "rn5"      "cavPor3"  "ochPri3"  "felCat5"  "conCri1"  "mm10-rn5"
 #> 
 #> [[2]]
-#> [1] "speTri2"         "ochPri3"         "bosTau7"         "loxAfr3"        
-#> [5] "triMan1"         "anoCar2"         "loxAfr3-triMan1"
+#> [1] "mm10"     "rn5"      "felCat5"  "conCri1"  "monDom5"  "galGal4"  "mm10-rn5"
 #> 
 #> [[3]]
-#> [1] "rn5"             "micOch1"         "felCat5"         "canFam3"        
-#> [5] "monDom5"         "galGal4"         "felCat5-canFam3"
+#> [1] "otoGar3"         "bosTau7"         "monDom5"         "galGal4"        
+#> [5] "anoCar2"         "xenTro7"         "galGal4-anoCar2"
 #> 
 #> [[4]]
-#> [1] "bosTau7"         "felCat5"         "canFam3"         "conCri1"        
-#> [5] "monDom5"         "anoCar2"         "felCat5-canFam3"
+#> [1] "hetGla2"         "cavPor3"         "macFas5"         "otoGar3"        
+#> [5] "bosTau7"         "xenTro7"         "hetGla2-cavPor3"
 #> 
 #> [[5]]
-#> [1] "rn5"             "nanGal1"         "hetGla2"         "cavPor3"        
-#> [5] "oryCun2"         "hg19"            "hetGla2-cavPor3"
+#> [1] "equCab2"         "canFam3"         "monDom5"         "galGal4"        
+#> [5] "anoCar2"         "xenTro7"         "galGal4-anoCar2"
 ```
 
 ## Computing phenotypic associations with _phyloConverge_
