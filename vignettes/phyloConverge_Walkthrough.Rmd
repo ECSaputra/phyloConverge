@@ -196,7 +196,7 @@ phyloConverge can be used to scan a given alignment and compute local convergent
 
 * `neutralMod`: neutral nucleotide substitution model
 
-* `refseq`: reference species, usually the same as the root species
+* `refseq`: reference species of the alignment
 
 * `offset`: offset for the coordinates in the alignment. If NULL (default), the offset specified in the MSA object is used
 
