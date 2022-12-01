@@ -1,7 +1,7 @@
 ---
 title: "phyloConverge Walkthrough"
 author: "Elysia Saputra"
-output: pdf_document
+output: html_document
 vignette: >
   %\VignetteIndexEntry{phyloConverge Walkthrough}
   %\VignetteEngine{knitr::rmarkdown}
@@ -16,64 +16,6 @@ This walkthrough contains instructions for using _phyloConverge_ to perform conv
 library(phyloConverge)
 library(rphast)
 library(RERconverge)
-#> Loading required package: RColorBrewer
-#> Loading required package: gplots
-#> 
-#> Attaching package: 'gplots'
-#> The following object is masked from 'package:stats':
-#> 
-#>     lowess
-#> Loading required package: phytools
-#> Loading required package: ape
-#> 
-#> Attaching package: 'ape'
-#> The following object is masked from 'package:rphast':
-#> 
-#>     complement
-#> Loading required package: maps
-#> Loading required package: geiger
-#> Loading required package: Rcpp
-#> Loading required package: RcppArmadillo
-#> Loading required package: weights
-#> Loading required package: Hmisc
-#> Loading required package: lattice
-#> Loading required package: survival
-#> Loading required package: Formula
-#> Loading required package: ggplot2
-#> 
-#> Attaching package: 'Hmisc'
-#> The following object is masked from 'package:ape':
-#> 
-#>     zoom
-#> The following objects are masked from 'package:base':
-#> 
-#>     format.pval, units
-#> Registered S3 method overwritten by 'gdata':
-#>   method         from  
-#>   reorder.factor gplots
-#> Loading required package: phangorn
-#> Loading required package: dplyr
-#> 
-#> Attaching package: 'dplyr'
-#> The following objects are masked from 'package:Hmisc':
-#> 
-#>     src, summarize
-#> The following objects are masked from 'package:stats':
-#> 
-#>     filter, lag
-#> The following objects are masked from 'package:base':
-#> 
-#>     intersect, setdiff, setequal, union
-#> Loading required package: FSA
-#> ## FSA v0.9.3. See citation('FSA') if used in publication.
-#> ## Run fishR() for related website and fishR('IFAR') for related book.
-#> Loading required package: castor
-#> Loading required package: Matrix
-#> 
-#> Attaching package: 'RERconverge'
-#> The following object is masked from 'package:phangorn':
-#> 
-#>     pruneTree
 pcpath = find.package('phyloConverge')
 ```
 
@@ -155,24 +97,24 @@ permulated_foregrounds = getPermulatedPhenotypes(foregrounds, neutral_tree, num_
 						 root_species, output_mod="names")
 print(permulated_foregrounds)
 #> [[1]]
-#> [1] "rn5"             "micOch1"         "speTri2"         "hetGla2"        
-#> [5] "cavPor3"         "equCab2"         "hetGla2-cavPor3"
+#> [1] "mm10"            "micOch1"         "nanGal1"         "speTri2"        
+#> [5] "hetGla2"         "cavPor3"         "hetGla2-cavPor3"
 #> 
 #> [[2]]
-#> [1] "mm10"            "speTri2"         "hetGla2"         "cavPor3"        
-#> [5] "canFam3"         "galGal4"         "hetGla2-cavPor3"
+#> [1] "speTri2"         "ochPri3"         "bosTau7"         "loxAfr3"        
+#> [5] "triMan1"         "anoCar2"         "loxAfr3-triMan1"
 #> 
 #> [[3]]
-#> [1] "mm10"            "speTri2"         "cavPor3"         "oryCun2"        
-#> [5] "ochPri3"         "macFas5"         "oryCun2-ochPri3"
+#> [1] "rn5"             "micOch1"         "felCat5"         "canFam3"        
+#> [5] "monDom5"         "galGal4"         "felCat5-canFam3"
 #> 
 #> [[4]]
-#> [1] "micOch1"         "nanGal1"         "speTri2"         "hetGla2"        
-#> [5] "cavPor3"         "anoCar2"         "hetGla2-cavPor3"
+#> [1] "bosTau7"         "felCat5"         "canFam3"         "conCri1"        
+#> [5] "monDom5"         "anoCar2"         "felCat5-canFam3"
 #> 
 #> [[5]]
-#> [1] "mm10"            "micOch1"         "nanGal1"         "cavPor3"        
-#> [5] "oryCun2"         "ochPri3"         "oryCun2-ochPri3"
+#> [1] "rn5"             "nanGal1"         "hetGla2"         "cavPor3"        
+#> [5] "oryCun2"         "hg19"            "hetGla2-cavPor3"
 ```
 
 ## Computing phenotypic associations with _phyloConverge_
