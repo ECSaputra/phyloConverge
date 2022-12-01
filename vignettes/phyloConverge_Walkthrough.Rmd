@@ -47,7 +47,8 @@ neutralMod = read.tm(neutralMod_path)
 
 # Loading alignment
 alnfile = 'CNE031689.fa'
-msa = read.msa(alnfile)
+alnpath = paste0(pcpath, '/data/', alnfile)
+msa = read.msa(alnpath)
 ```
 
 **Foreground species** names are supplied in the form of a character vector. In the example below, 6 extant species and 1 ancestral species are specified as foregrounds. Currently, _phyloConverge_ is not yet implemented to account for trait loss events, meaning that the daughter species of an ancestral foreground species must also be specified as foregrounds.
@@ -59,8 +60,10 @@ foregrounds = c('nanGal1', 'chrAsi1', 'conCri1', 'hetGla2', 'mm10', 'rn5', 'mm10
 If the phenotype input is in the form of a binary tree, or if the correct nomenclature of the ancestral species is not known, the function `getForegroundsFromTree` can be used to extract the names of the foreground species while ensuring that the ancestral nodes are named correctly.
 
 ```{r, message=F, warning=F, error=F, fig.show="hide"}
-neutral_tree = getTreeFromEvolMod(neutralMod_path)
-foreground_tree = getTreeFromForegrounds(foregrounds, neutral_tree)
+foreground_tree_file = 'foreground_tree.RDS'
+foreground_tree = readRDS(paste0(pcpath, '/data/', foreground_tree_file))
+
+# Extracting foreground names from binary input tree
 foreground_names = getForegroundsFromTree(foreground_tree)
 print(foreground_names)
 
@@ -82,17 +85,17 @@ Before running `phyloConverge`, we need to generate the **permulated foreground 
 
 * `output_mod`: set as "names" to output null species character vectors, or "trees" to output binary phenotype trees.
 
-The code below shows an example for generating 10 permulated phenotypes. As we can see, the null phenotypes that are generated also consists of 6 tip species and 1 ancestral species, with a covariance structure that was computed from the observed data.
+The code below shows an example for generating 5 permulated phenotypes. As we can see, the null phenotypes that are generated also consists of 6 tip species and 1 ancestral species, with a covariance structure that was computed from the observed data.
 
 ```{r, message=F, warning=F, error=F, fig.show="hide"}
-num_perms = 10
+num_perms = 5
 root_species = "mm10"
+
+neutral_tree = read.tree(text=neutralMod$tree)
 
 permulated_foregrounds = getPermulatedPhenotypes(foregrounds, neutral_tree, num_perms, 
 						 root_species, output_mod="names")
-print(permulated_foregrounds[[1]])
-print(permulated_foregrounds[[2]])
-print(permulated_foregrounds[[3]])
+print(permulated_foregrounds)
 ```
 
 ## Computing phenotypic associations with _phyloConverge_
@@ -125,10 +128,60 @@ The first function that can be used to compute convergence score with the _phylo
 
 * `adapt`: A Boolean flag for performing adaptive permulation (default TRUE)
 
-The _phyloConverge_ function can be used to compute the convergence score of an entire input alignment (e.g., if the alignment file is a short alignment of a conserved non-coding element). 
+The `phyloConverge` function can be used to compute the convergence score of an entire input alignment (e.g., if the alignment file is a short alignment of a conserved non-coding element), specifically by setting `feature` as NULL. 
 
+In the example below, we are using 500 pre-computed permulated phenotypes. By default, `phyloConverge` uses an 'adaptive' strategy for computing permulation (empirical) p-values and scores, in which permulation is terminated once the target significance level has been surpassed. This strategy speeds up the computation, although user can choose to run the complete permulation by setting the `adapt` input argument to FALSE.
+
+When `adapt` = TRUE, use the `alpha` input argument to specify the significance level to control. For example, if `alpha` = 0.05, `phyloConverge` will accurately compute permulation p-values <= 0.05, while some inaccuracies are allowed for permulation p-values outside of the rejection threshold.
+
+The `phyloConverge` output is a data frame object with 4 columns:
+
+* permPval: permulation p-value
+
+* corr_score: bias-corrected score (negative denotes convergent rate deceleration, positive denotes convergent rate acceleration)
+
+* uncorr_score: uncorrected score (negative denotes convergent rate deceleration, positive, denotes convergent rate acceleration)
+
+* feature: feature names (defaults to featureX, but will be the same as the specified names of the features is the `feature` input argument is supplied)
+
+```{r, message=F, warning=F, error=F, fig.show="hide"}
+permulated_foregrounds_file = 'permulated_foregrounds_500perms.RDS'
+permulated_foregrounds = readRDS(paste0(pcpath, '/data/', permulated_foregrounds_file))
+
+# adaptive
+element_score_adaptive = phyloConverge(foregrounds, permulated_foregrounds, neutralMod, 
+				     msa, refseq="mm10")
+print(element_score_adaptive)
+
+# non-adaptive
+element_score_nonadp = phyloConverge(foregrounds, permulated_foregrounds, neutralMod,
+				     msa, refseq="mm10", adapt=F)
+print(element_score_nonadp)
+```
 
 ### Scoring subregion(s) of an alignment
+
+The `phyloConverge` function can also be used to score specific subregions in an alignment, which can be done by supplying a data frame in the BED file format containing the coordinates of the subregions to score. The data frame must be converted into a feature object before being supplied to `phyloConverge`, as follows:
+
+```{r, message=F, warning=F, error=F, fig.show="hide"}
+# Scoring a single subregion
+bed = data.frame("chr"="chr1", "start"=5, "end"=20, "name"="feature1")
+print(bed)
+feature = convertBedToFeature(bed, "mm10")
+subregion_score = phyloConverge(foregrounds, permulated_foregrounds, neutralMod, 
+				msa, "mm10", feature, adapt=F)
+print(subregion_score)
+
+# Scoring multiple subregions
+bed = data.frame("chr"=rep("chr1",3), "start"=c(5, 25, 50), "end"=c(20, 35, 100), 
+		 "name"=paste0("feature", c(1,2,3)))
+print(bed)
+features = convertBedToFeature(bed, "mm10")
+
+multiple_subregion_scores = phyloConverge(foregrounds, permulated_foregrounds, 
+					      neutralMod, msa, "mm10", features, adapt=T)
+print(multiple_subregion_scores)
+```
 
 
 ### Scanning an element
