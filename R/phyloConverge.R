@@ -117,7 +117,7 @@ run_phyloConverge=function(foregrounds, permulated_foregrounds, neutralMod, maf,
 #' @param method scoring method for phyloP (default "LRT")
 #' @param mode scoring mode for phyloP (default "CONACC")
 #' @param adapt Boolean flag for performing adaptive permulation (adapt = TRUE for adaptive permulation, adapt = FALSE for complete permulations, default TRUE)
-#' @return out a data frame containing phyloConverge permulation p-values, corrected score, and uncorrected score (negative score denotes acceleration, positive score denotes deceleration)
+#' @return out_df a data frame containing the start and end coordinates of the sliding windows and their corresponding phyloConverge scores
 #' @export
 scanWithPhyloConverge=function(maf, foregrounds, permulated_foregrounds, neutralMod, refseq, offset=NULL, stride=1, window=1, alpha=0.05, min.fg=2, method="LRT", mode="CONACC", adapt=T){
   if (is.null(offset)){
@@ -143,6 +143,6 @@ scanWithPhyloConverge=function(maf, foregrounds, permulated_foregrounds, neutral
   }
   position = offset + scored_pos
 
-  out_df = data.frame("coordinate"=position, "corr_score"=scan_score)
+  out_df = data.frame("start"=position-flank, "end"=position+flank, "corr_score"=scan_score)
   out_df
 }
